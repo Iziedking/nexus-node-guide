@@ -79,7 +79,7 @@ bash <(curl -s https://raw.githubusercontent.com/yourusername/nexus-node-guide/m
 ```
 then start node in your screen
 ```bash
-start --node-id <your-node-id>
+./start --node-id <your-node-id>
 ```
 ---
 ## 6. Want to run multiple nodes 
@@ -93,12 +93,17 @@ nexus-network start --node-id your-node-id
    
 5. If you faced GLIBC-limited error then run
 ```bash
-start --node-id <your-node-id>
+./start --node-id <your-node-id>
 ```
 6. Run this on each screen you create
 ---
+## 7. Check System load
+```bash
+sudo apt install htop
+htop
+```
 
-## **FAQs** 
+## ❓**FAQs** 
 Can I Use Multiple Devices?
 
 Yes! You can run Nexus nodes on:
@@ -106,6 +111,21 @@ Yes! You can run Nexus nodes on:
 - Desktops, laptops, mobile phones, VPS, and servers
 - Multiple browser tabs simultaneously
 - All managed under **one Nexus account**
+
+Why run multiple Nodes?
+
+- More nodes = more NEX
+- Run only what your system can handle
+- Run htop to monitor CPU/RAM
+
+---
+## Screen Commands
+
+| Action        | Command                 |
+| ------------- | ----------------------- |
+| Detach screen | `CTRL + A + D`          |
+| Resume screen | `screen -r nexus`       |
+| Kill screen   | `screen -XS nexus quit` |
 
 ---
 Goodluck
