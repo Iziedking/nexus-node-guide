@@ -5,7 +5,7 @@ Earn NEX Points by contributing compute power and interacting with the Nexus eco
 ---
 
 
-##  1. Create a Nexus Account
+##  1. Create a Nexus Account if you don't have one else if you participated in testnet I and II just sing in 
 
 1. Go to: [Nexus website](https://app.nexus.xyz)
 2. Sign up and follow the linking instructions.
@@ -15,77 +15,88 @@ Earn NEX Points by contributing compute power and interacting with the Nexus eco
 
 ## 2. Run a Web-Based Prover
 
-### Easiest way to get started.
-
 - Log in at: [https://app.nexus.xyz](https://app.nexus.xyz)
 - Click **Start Node**
 - You can run multiple tabs across devices and browsers
 
 ---
 
-## 🛒 3. One-Click Node Hosting
+## 3. One-Click Node Hosting
 
 - Register at [Mintair](https://mintair.xyz)
 - Buy a pre-configured Nexus Node instance
 
 ---
 
-## 🧪 4. Chromium on VPS
+##  4. CLI Node Setup (Recommended)
 
-Want to run browser-based nodes on a VPS?
-
-- Install Chromium
-- Open multiple tabs
-- Run Nexus dashboard in each
-
-> ⚠️ Performance varies — CLI nodes are preferred for stability.
-
----
-
-## 🔧 5. CLI Node Setup (Recommended)
-
-### ✅ Requirements
+### Requirements
 
 - Linux-based VPS (8GB RAM or more recommended)
 - Supports Ubuntu 20.04, 22.04 or similar
 
 ---
 
-### ⚙️ One-Line Setup Script (Install Everything Automatically)
-
-Create `install-nexus.sh` and paste this:
-
-```bash
-#!/bin/bash
-# === Update & Install Dependencies ===
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y screen curl build-essential pkg-config libssl-dev git-all protobuf-compiler gawk bison gcc make wget tar
-
-# === Install Rust (for Prover Support) ===
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-source $HOME/.cargo/env
-rustup target add riscv32i-unknown-none-elf
-
-# === Build & Install GLIBC 2.39 Safely ===
-mkdir -p /opt/glibc-2.39-src && cd /opt/glibc-2.39-src
-wget -c https://ftp.gnu.org/gnu/glibc/glibc-2.39.tar.gz
-tar -xvzf glibc-2.39.tar.gz
-mkdir glibc-build && cd glibc-build
-../glibc-2.39/configure --prefix=/opt/glibc-2.39
-make -j$(nproc)
-sudo make install
-
-# === Install Nexus CLI ===
-cd ~
-curl https://cli.nexus.xyz/ | sh
-source ~/.bashrc
-
 ##  Nexus Node CLI Installer
 
+### Login into your VPS as root user and run the following commands
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/Iziedking/nexus-node-guide/main/install.sh)
 ```
+### Create a screen
+```bas
+screen -S nexus
+```
+### start node with node ID
+```bash
+nexus-network start --node-id your-node-id
+```
+### How to get node ID
+#### From Nexus web App
+i. Goto [Node region](https://app.nexus.xyz/nodes)
+ii. Click on ``Add Node`` then ``Add CLI Node`` then copy ``node-id`` (replace ``your-node-id`` with ``node-id`` you copied)
+#### From CLI direct
+i. Register your wallet first (copy from Nexus dashboard)
+```bash
+source ~/.bashrc
+
+nexus-network register-user --wallet-address your-wallet-address
+```
+ii. Replace ``your-wallet-address`` with address you copied
+
+iii. Create node ID
+```bash
+nexus-network register-node
+```
+iv. Then go to dashboard copy ID and replace with ``your-node-id``
+---
+## 5. If you are using ubuntu 22.0 or below you might face errors like 
+**Error: nexus-network: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.39' not found (required by nexus-network)**
+to fix that run this script
+```bash
+bash <(curl -s https://raw.githubusercontent.com/yourusername/nexus-node-guide/main/scripts/run-nexus.sh)
+```
+then start node in your screen
+```bash
+start --node-id <your-node-id>
+```
+---
+## 6. Want to run multiple nodes 
+1. create multiple ``node-id``
+2. open multiple screen for each
+3. if you did not face any GLIBC-limited error thrn run
+```bash
+nexus-network start --node-id your-node-id
+```
+4. Run on each screen you open to start node
+   
+5. If you faced GLIBC-limited error then run
+```bash
+start --node-id <your-node-id>
+```
+6. Run this on each screen you create
+---
 
 ## **FAQs** 
 Can I Use Multiple Devices?
@@ -97,3 +108,9 @@ Yes! You can run Nexus nodes on:
 - All managed under **one Nexus account**
 
 ---
+Goodluck
+
+## Credits
+Official docs: https://docs.nexus.xyz
+Community-sourced optimizations and testing
+follow me on [X](https://x.com/Iziedking) here
