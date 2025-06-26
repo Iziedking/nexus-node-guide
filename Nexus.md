@@ -35,7 +35,6 @@ Earn NEX Points by contributing compute power and interacting with the Nexus eco
 - Linux-based VPS (8GB RAM or more recommended)
 - Supports Ubuntu 20.04, 22.04 or similar
 
----
 
 ##  Nexus Node CLI Installer
 
