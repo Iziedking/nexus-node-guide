@@ -41,8 +41,6 @@ Earn NEX Points by contributing compute power and interacting with the Nexus eco
 ### Login into your VPS as root user and run the following commands
 
 ```bash
-chmod +x install.sh scripts/*.sh
-
 bash <(curl -s https://raw.githubusercontent.com/Iziedking/nexus-node-guide/main/install.sh)
 ```
 ### Create a screen
