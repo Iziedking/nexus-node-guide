@@ -69,6 +69,7 @@ iii. Create node ID
 nexus-network register-node
 ```
 iv. Then go to dashboard copy ID and replace with ``your-node-id``
+
 ---
 ## 5. If you are using ubuntu 22.0 or below you might face errors like 
 **Error: nexus-network: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.39' not found (required by nexus-network)**
