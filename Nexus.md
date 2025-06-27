@@ -75,11 +75,37 @@ iv. Then go to dashboard copy ID and replace with ``your-node-id``
 **Error: nexus-network: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.39' not found (required by nexus-network)**
 to fix that run this script
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/Iziedking/nexus-node-guide/main/scripts/run-nexus.sh)
+nano run-nexus.sh
 ```
+Paste this into the file and save (Ctrl + O and hit enter, Ctrl + X to exit)
+```bash
+#!/bin/bash
+
+mkdir -p /opt/glibc-2.39-src && cd /opt/glibc-2.39-src
+wget -c https://ftp.gnu.org/gnu/glibc/glibc-2.39.tar.gz
+tar -xvzf glibc-2.39.tar.gz
+mkdir glibc-build && cd glibc-build
+../glibc-2.39/configure --prefix=/opt/glibc-2.39
+make -j$(nproc)
+sudo make install
+
+
+export NEXUS_BIN=$(which nexus-network)
+export LOADER="/opt/glibc-2.39/lib/ld-linux-x86-64.so.2"
+export GLIBCLIB="/opt/glibc-2.39/lib"
+export LIBGCC_PATH="/usr/lib/gcc/x86_64-linux-gnu/11"
+export FULL_LIB_PATH="$GLIBCLIB:$LIBGCC_PATH:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu"
+
+$LOADER --library-path $FULL_LIB_PATH $NEXUS_BIN "$@"
+```
+Make it executable
+```bash
+chmod +x run-nexus.sh
+```
+
 then start node in your screen
 ```bash
-./start --node-id <your-node-id>
+./run-nexus.sh start --node-id <your-node-id>
 ```
 ---
 ## 6. Want to run multiple nodes 
@@ -93,7 +119,7 @@ nexus-network start --node-id your-node-id
    
 5. If you faced GLIBC-limited error then run
 ```bash
-./start --node-id <your-node-id>
+./run-nexus.sh start --node-id <your-node-id>
 ```
 6. Run this on each screen you create
 ---
