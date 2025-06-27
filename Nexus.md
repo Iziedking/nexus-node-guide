@@ -77,8 +77,6 @@ to fix that run:
 
 Run this to install and execute glibc
 ```bash
-#!/bin/bash
-
 mkdir -p /opt/glibc-2.39-src && cd /opt/glibc-2.39-src
 wget -c https://ftp.gnu.org/gnu/glibc/glibc-2.39.tar.gz
 tar -xvzf glibc-2.39.tar.gz
@@ -92,6 +90,8 @@ nano run-nexus.sh
 ```
 Paste this into the file and save (Ctrl + O and hit enter, Ctrl + X to exit)
 ```bash
+#!/bin/bash
+
 export NEXUS_BIN=$(which nexus-network)
 export LOADER="/opt/glibc-2.39/lib/ld-linux-x86-64.so.2"
 export GLIBCLIB="/opt/glibc-2.39/lib"
