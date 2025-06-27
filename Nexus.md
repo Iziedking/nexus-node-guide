@@ -75,7 +75,7 @@ iv. Then go to dashboard copy ID and replace with ``your-node-id``
 **Error: nexus-network: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.39' not found (required by nexus-network)**
 to fix that run this script
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/yourusername/nexus-node-guide/main/scripts/run-nexus.sh)
+bash <(curl -s https://raw.githubusercontent.com/Iziedking/nexus-node-guide/main/scripts/run-nexus.sh)
 ```
 then start node in your screen
 ```bash
