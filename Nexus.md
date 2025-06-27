@@ -73,11 +73,9 @@ iv. Then go to dashboard copy ID and replace with ``your-node-id``
 ---
 ## 5. If you are using ubuntu 22.0 or below you might face errors like 
 **Error: nexus-network: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.39' not found (required by nexus-network)**
-to fix that run this script
-```bash
-nano run-nexus.sh
-```
-Paste this into the file and save (Ctrl + O and hit enter, Ctrl + X to exit)
+to fix that run:
+
+Run this to install and execute glibc
 ```bash
 #!/bin/bash
 
@@ -88,8 +86,12 @@ mkdir glibc-build && cd glibc-build
 ../glibc-2.39/configure --prefix=/opt/glibc-2.39
 make -j$(nproc)
 sudo make install
-
-
+```
+```bash
+nano run-nexus.sh
+```
+Paste this into the file and save (Ctrl + O and hit enter, Ctrl + X to exit)
+```bash
 export NEXUS_BIN=$(which nexus-network)
 export LOADER="/opt/glibc-2.39/lib/ld-linux-x86-64.so.2"
 export GLIBCLIB="/opt/glibc-2.39/lib"
