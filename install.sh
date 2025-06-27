@@ -6,7 +6,7 @@ echo " Starting Nexus Prover Setup..."
 
 echo " Installing system packages..."
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y screen curl build-essential pkg-config libssl-dev git-all protobuf-compiler
+sudo apt install -y screen curl build-essential pkg-config libssl-dev git-all protobuf-compiler bison
 
 
 echo " Installing Rust..."
