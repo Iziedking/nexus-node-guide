@@ -130,6 +130,28 @@ nexus-network start --node-id your-node-id
 sudo apt install htop
 htop
 ```
+---
+## 8. If new release comes run
+```bash
+curl https://cli.nexus.xyz/ | sh
+
+source ~/.bashrc
+
+nexus-network --version
+```
+Kill current node or exit all screens and restart them
+```bash
+pkill -f nexus-network
+```
+Use direct command for Ubuntu 24 or higher to restart node
+```bash
+nexus-network start --node-id <your-node-id>
+```
+Use this for Ubuntu 22 or lower
+```bash
+./run-nexus.sh start --node-id <your-node-id>
+```
+---
 
 ## ❓**FAQs** 
 Can I Use Multiple Devices?
